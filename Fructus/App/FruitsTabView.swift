@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct FruitsTabView: View {
+    
+    // MARK:- PROPERTIES
+    var fruits: [Fruit] = fruitData
+    
+    // MARK:- BODY
     var body: some View {
+        
         TabView{
-            ForEach(1..<5) { item in
-                ContentView()
+            ForEach(fruits[1...5]) { item in
+                FruitCardView(fruit: item)
             }
         }
         .tabViewStyle(PageTabViewStyle())

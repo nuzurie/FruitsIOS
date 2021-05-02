@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct FructusApp: App {
+    @AppStorage("onBoarding") var onBoarding: Bool = true
     var body: some Scene {
         WindowGroup {
-            FruitsTabView()
+            if (onBoarding) {
+                FruitsTabView()
+            }
+            else {
+                ContentView()
+            }
         }
     }
 }

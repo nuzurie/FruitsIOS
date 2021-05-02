@@ -11,50 +11,18 @@ import SwiftUI
 
 struct ContentView: View {
     // MARK: - PROPERTIES
-        @State var isAnimating = false
+    var fruits: [Fruit] = fruitData
     
+    // MARK:- BODY
     var body: some View {
-        
-    // MARK: - BODY
-        ZStack {
-            VStack(spacing:20){
-                
-                //FRUIT: IMAGE
-                Image("blueberry")
-                    .resizable()
-                    .scaledToFit()
-                    .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 8, x: 6, y: 8)
-                    .scaleEffect(isAnimating ? 1.0 : 0.6)
-                
-                // FRUIT: TITLE
-                Text("Blueberry")
-                    .foregroundColor(.white)
-                    .font(.title)
-                    .fontWeight(.heavy)
-                    .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 2, y: 2)
-                
-                //FRUIT: HEADLINE
-                Text("Blueberries are a beautiful, delicious and nutritious fruit, enjoyed all over the world.")
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 16)
-                    .frame(maxWidth: 410)
-                
-                
-                //BUTTON: START
-                ButtonStartView()
-                    .padding(.top, 30)
-                
-            } //VStack
-        }//ZStack
-        .onAppear{
-            withAnimation(.easeOut(duration: 0.6)) {
-                          isAnimating = true
+        NavigationView {
+            List {
+                ForEach(fruits.shuffled()) {item in
+                    FruitListView(fruit: item)
+                }
             }
+            .navigationTitle("Fruits")
         }
-        .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: .infinity, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
-        .background(LinearGradient(gradient: Gradient(colors: [Color("ColorBlueberryLight"),Color("ColorBlueberryDark")]), startPoint: .top, endPoint: .bottom))
-        .cornerRadius(10)
     }
 }
 
