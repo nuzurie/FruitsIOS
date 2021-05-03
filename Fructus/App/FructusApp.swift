@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct FructusApp: App {
-    @AppStorage("onBoarding") var onBoarding: Bool = true
+    @ObservedObject var b = boarding
+    
     var body: some Scene {
         WindowGroup {
-            if (onBoarding) {
+            if (b.isboarded) {
                 FruitsTabView()
             }
             else {

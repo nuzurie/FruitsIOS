@@ -12,6 +12,7 @@ import SwiftUI
 struct ContentView: View {
     // MARK: - PROPERTIES
     var fruits: [Fruit] = fruitData
+    @ObservedObject var b = boarding
     
     // MARK:- BODY
     var body: some View {
@@ -27,7 +28,13 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Fruits")
+            .navigationBarItems(leading: Button(action: {
+                b.isboarded = true
+            }) {
+                Image(systemName: "arrowshape.turn.up.backward")
+            })
         }
+//        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

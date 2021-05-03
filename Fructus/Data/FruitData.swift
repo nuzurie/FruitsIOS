@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// MARK:- Boarding Data
+let boarding: BoardingState = BoardingState()
+
 // MARK:- Fruit Data
 
 let fruitData = [

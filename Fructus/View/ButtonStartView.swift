@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ButtonStartView: View {
-    @AppStorage("onBoarding") var onBoarding: Bool?
+    @ObservedObject var b = boarding
     var body: some View {
         
         // MARK: PROPERTIES
         
         // MARK: BODY
         Button (action: {
-            self.onBoarding = false
+            b.isboarded = false
         }){
             Text("Start")
             

@@ -10,9 +10,10 @@ import SwiftUI
 struct FruitDetailView: View {
     // MARK:- PROPERTIES
     var fruit: Fruit
+    @State private var isShowingCard: Bool = false
     // MARK:- BODY
     var body: some View {
-        ScrollView{
+        ScrollView(.vertical, showsIndicators: false) {
             VStack{
                 //image card
                 FruitHeaderView(fruit: fruit)
@@ -28,6 +29,9 @@ struct FruitDetailView: View {
                     Text(fruit.headline)
                         .font(.title2)
                         .fontWeight(.medium)
+                    
+                    //nutrition
+                    FruitNutritionView(fruit: fruit)
                     
                     //subheadline
                     Text("LEARN MORE ABOUT \(fruit.title.uppercased())")
@@ -50,13 +54,19 @@ struct FruitDetailView: View {
                 
             } //VStack
             .navigationBarTitle(fruit.title, displayMode: .inline)
-//            navigationBarHidden(true)
+            .navigationBarItems(trailing: Button(action: {
+                isShowingCard = true
+            }, label: {
+                Image(systemName: "slider.horizontal.3")
+            }))
+            .sheet(isPresented: $isShowingCard, content: {
+                SettingsView()
+            })
+//                navigationBarHidden(true)
             
         } // ScrollView
         .edgesIgnoringSafeArea(.top)
-        
-        
-        
+
     }
 }
 
